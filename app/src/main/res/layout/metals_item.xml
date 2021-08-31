@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.metals.precious.ui.uiAdds.BindingUtils"/>
+        <variable
+            name="metalData"
+            type="com.metals.precious.app.models.MetalsPrices" />
+        <variable
+            name="currencyName"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/thisLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/datesTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:layout_weight="1"
+            tools:text="13.09.1977"
+            android:text="@{metalData.date}"
+            android:layout_margin="3dp"
+            android:textAlignment="center" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/am"
+            android:layout_margin="3dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/amTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:layout_weight="1"
+            tools:text="150.350"
+            android:text="@{BindingUtils.INSTANCE.returnMetalsCurrencyValue(metalData, currencyName, true)}"
+            android:layout_margin="3dp"
+            android:paddingHorizontal="@dimen/halfMargin"
+            android:textAlignment="viewEnd" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/pm"
+            android:layout_margin="3dp"
+            android:textAlignment="center" />
+
+
+        <TextView
+            android:id="@+id/pmTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:layout_weight="1"
+            tools:text="157.600"
+            android:text="@{BindingUtils.INSTANCE.returnMetalsCurrencyValue(metalData, currencyName, false)}"
+            android:layout_margin="3dp"
+            android:paddingHorizontal="@dimen/halfMargin"
+            android:textAlignment="viewEnd" />
+
+    </LinearLayout>
+</layout>

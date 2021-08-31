@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Precious Metals</string>
+    <string name="loading">Loading</string>
+    <string name="gold">Gold</string>
+    <string name="silver">Silver</string>
+    <string name="platinum">Platinum</string>
+    <string name="palladium">Palladium</string>
+    <string name="am" translatable="false">am:</string>
+    <string name="pm" translatable="false">pm:</string>
+    <string name="year_month">select month and year</string>
+    <string name="usd" translatable="false">USD</string>
+    <string name="eur" translatable="false">EUR</string>
+    <string name="gbp" translatable="false">GBP</string>
+    <string name="year">year</string>
+    <string name="month">month</string>
+    <string name="ok" translatable="false">OK</string>
+    <string-array name="currencies">
+        <item>@string/usd</item>
+        <item>@string/eur</item>
+        <item>@string/gbp</item>
+    </string-array>
+    <string name="au" translatable="false">Au</string>
+    <string name="ag" translatable="false">Ag</string>
+    <string name="pl" translatable="false">Pl</string>
+    <string name="pt" translatable="false">Pt</string>
+    <string name="no_net">NO INTERNET CONNECTION</string>
+</resources>

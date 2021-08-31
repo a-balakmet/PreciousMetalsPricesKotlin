@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Edelmetalle</string>
+    <string name="gold">Gold</string>
+    <string name="silver">Silber</string>
+    <string name="platinum">Platin</string>
+    <string name="palladium">Palladium</string>
+    <string name="year_month">Monat und Jahr auswählen</string>
+    <string name="year">Jahr</string>
+    <string name="month">Monat</string>
+    <string name="loading">Laden von Daten</string>
+    <string name="no_net">KEINE INTERNETVERBINDUNG</string>
+</resources>

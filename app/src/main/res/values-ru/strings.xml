@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Драгоценные металлы</string>
+    <string name="gold">Золото</string>
+    <string name="loading">Загрузка</string>
+    <string name="month">месяц</string>
+    <string name="palladium">Палладий</string>
+    <string name="platinum">Платина</string>
+    <string name="silver">Серебро</string>
+    <string name="year">год</string>
+    <string name="year_month">выберите месяц и год</string>
+    <string-array name="currencies">
+        <item>@string/usd</item>
+        <item>@string/eur</item>
+        <item>@string/gbp</item>
+    </string-array>
+    <string name="no_net">НЕТ СОЕДИНЕНИЯ С ИНТЕРНЕТОМ</string>
+</resources>

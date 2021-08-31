@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.metals.precious.ui.fragments.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_periodDialog"
+            app:destination="@id/periodDialog" />
+        <action
+            android:id="@+id/action_mainFragment_to_noNetDialog"
+            app:destination="@id/noNetDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/periodDialog"
+        android:name="com.metals.precious.ui.dialogs.PeriodDialog"
+        android:label="PeriodDialog"
+        tools:layout="@layout/dialog_period"/>
+    <dialog
+        android:id="@+id/noNetDialog"
+        android:name="com.metals.precious.ui.dialogs.NoNetDialog"
+        android:label="NoNetDialog"
+        tools:layout="@layout/dialog_no_net"/>
+</navigation>

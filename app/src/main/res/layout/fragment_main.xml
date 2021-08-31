@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.metals.precious.R" />
+        <import type="android.view.View"/>
+        <import type="com.metals.precious.ui.uiAdds.BindingUtils"/>
+        <variable
+            name="mainViewModel"
+            type="com.metals.precious.app.viewModels.MainViewModel" />
+        <variable
+            name="showProgress"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/metal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{BindingUtils.INSTANCE.returnMetalName(mainViewModel.metalName)}"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/aMargin"
+            app:layout_constraintLeft_toRightOf="@id/updater"
+            app:layout_constraintRight_toLeftOf="@id/period"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/period"
+            tools:text="sample text"/>
+
+        <ImageView
+            android:id="@+id/updater"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_update"
+            android:layout_margin="@dimen/aMargin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/period"
+            app:layout_constraintBottom_toBottomOf="@id/period"
+            android:contentDescription="@string/loading"
+            android:onClick="@{(view) -> mainViewModel.getCurrentData()}"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/aMargin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{(view) -> mainViewModel.setOperation(0)}">
+
+            <TextView
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@{mainViewModel.period[0]}"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="08" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark" />
+
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@{mainViewModel.period[1]}"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="2021" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{showProgress ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="@{showProgress ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/metal"
+            app:tabMode="scrollable" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/halfMargin"
+            android:visibility="@{showProgress ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@id/footer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <LinearLayout
+            android:id="@+id/footer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/au"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="@string/au"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@{BindingUtils.INSTANCE.returnMetalName(mainViewModel.metalName).equals(@string/gold) ? @color/colorAccent : @color/colorPrimaryDark}"
+                android:onClick="@{(view) -> mainViewModel.setTitle(R.string.gold)}" />
+
+            <Button
+                android:id="@+id/ag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="@string/ag"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@{BindingUtils.INSTANCE.returnMetalName(mainViewModel.metalName).equals(@string/silver) ? @color/colorAccent : @color/colorPrimaryDark}"
+                android:onClick="@{(view) -> mainViewModel.setTitle(R.string.silver)}"/>
+
+            <Button
+                android:id="@+id/pl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="@string/pl"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@{BindingUtils.INSTANCE.returnMetalName(mainViewModel.metalName).equals(@string/platinum) ? @color/colorAccent : @color/colorPrimaryDark}"
+                android:onClick="@{(view) -> mainViewModel.setTitle(R.string.platinum)}"/>
+
+            <Button
+                android:id="@+id/pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="@string/pt"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@{BindingUtils.INSTANCE.returnMetalName(mainViewModel.metalName).equals(@string/palladium) ? @color/colorAccent: @color/colorPrimaryDark}"
+                android:onClick="@{(view) -> mainViewModel.setTitle(R.string.palladium)}"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
