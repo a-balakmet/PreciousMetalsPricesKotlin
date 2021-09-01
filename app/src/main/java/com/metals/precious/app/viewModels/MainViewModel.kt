@@ -57,7 +57,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val calendar = GregorianCalendar()
         calendar.time = Date()
         if (calendar.get(Calendar.DAY_OF_MONTH) == 1) {
-            //val cal = Calendar.getInstance()
             calendar.add(Calendar.MONTH, -1)
             initPeriod(monthAndYear = monthYearFormatter.format(calendar.time))
         } else {
