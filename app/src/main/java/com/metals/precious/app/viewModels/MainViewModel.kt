@@ -38,8 +38,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     init {
         (application as ThisApp).getRetrofitComponent().inject(this)
         setTitle(R.string.gold)
-        initPeriod(monthAndYear = monthYearFormatter.format(Date()))
-        setOperation(1)
+        getCurrentData()
     }
 
     fun setOperation(o: Int) {
@@ -55,7 +54,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getCurrentData() {
-        initPeriod(monthAndYear = monthYearFormatter.format(Date()))
+        val calendar = GregorianCalendar()
+        calendar.time = Date()
+        if (calendar.get(Calendar.DAY_OF_MONTH) == 1) {
+            //val cal = Calendar.getInstance()
+            calendar.add(Calendar.MONTH, -1)
+            initPeriod(monthAndYear = monthYearFormatter.format(calendar.time))
+        } else {
+            initPeriod(monthAndYear = monthYearFormatter.format(Date()))
+        }
         setOperation(1)
     }
 

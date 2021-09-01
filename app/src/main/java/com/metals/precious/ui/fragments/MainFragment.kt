@@ -43,7 +43,6 @@ class MainFragment : Fragment() {
                         findNavController().navigate(R.id.action_mainFragment_to_periodDialog)
                     }
                     1 -> {
-                        binding.showProgress = true
                         observeMetal()
                     }
                     2 -> {
@@ -61,8 +60,8 @@ class MainFragment : Fragment() {
 
     private fun observeMetal(){
         mainViewModel.metalName.observe(viewLifecycleOwner, {
+            binding.showProgress = true
             it?.let {
-                binding.showProgress = true
                 if (!ThisApp().isNetwork(requireActivity())) {
                     mainViewModel.setOperation(2)
                 } else {
@@ -82,11 +81,11 @@ class MainFragment : Fragment() {
                                         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
                                             tab.text = resources.getStringArray(R.array.currencies)[position]
                                         }.attach()
+                                        binding.showProgress = false
                                     }
                                 } else {
                                     mainViewModel.getCurrentData()
                                 }
-                                binding.showProgress = false
                             }
                         })
                     }
@@ -103,11 +102,11 @@ class MainFragment : Fragment() {
                                         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
                                             tab.text = resources.getStringArray(R.array.currencies)[position]
                                         }.attach()
+                                        binding.showProgress = false
                                     }
                                 } else {
                                     mainViewModel.getCurrentData()
                                 }
-                                binding.showProgress = false
                             }
                         })
                     }
