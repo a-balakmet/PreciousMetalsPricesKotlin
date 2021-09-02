@@ -2,10 +2,8 @@ package com.metals.precious.app.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.metals.precious.R
-import com.metals.precious.ThisApp.Companion.instance
 import com.metals.precious.app.models.SilverPricesList
 import com.metals.precious.databinding.SilverItemBinding
 
@@ -24,9 +22,9 @@ class SilverListAdapter(private val theList: SilverPricesList, private val curre
                 binding.metalData = this
                 binding.currencyName = currencyName
                 if (position % 2 == 0) {
-                    binding.thisLayout.setBackgroundColor(ContextCompat.getColor(instance, R.color.colorPrimaryDarkHalf))
+                    binding.thisLayout.setBackgroundResource(R.color.colorPrimaryDarkHalf)
                 } else {
-                    binding.thisLayout.setBackgroundColor(ContextCompat.getColor(instance, R.color.colorBackground))
+                    binding.thisLayout.setBackgroundResource(R.color.colorBackground)
                 }
             }
         }
