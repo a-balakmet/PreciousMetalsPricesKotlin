@@ -15,4 +15,5 @@
         <item>@string/gbp</item>
     </string-array>
     <string name="no_net">НЕТ СОЕДИНЕНИЯ С ИНТЕРНЕТОМ</string>
+    <string name="error">Ошибка</string>
 </resources>

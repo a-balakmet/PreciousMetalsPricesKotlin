@@ -7,9 +7,13 @@ import com.metals.precious.R
 import com.metals.precious.app.models.MetalsPricesList
 import com.metals.precious.databinding.MetalsItemBinding
 
-class MetalsListAdapter(private val theList: MetalsPricesList, private val currencyName: String) : RecyclerView.Adapter<MetalsListAdapter.ViewHolder>() {
+class MetalsListAdapter(
+    private val theList: MetalsPricesList,
+    private val currencyName: String,
+    private val isSilver: Boolean) :
+    RecyclerView.Adapter<MetalsListAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: MetalsItemBinding) :RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: MetalsItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = MetalsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,10 +21,11 @@ class MetalsListAdapter(private val theList: MetalsPricesList, private val curre
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with(holder){
-            with(theList[position]){
+        with(holder) {
+            with(theList[position]) {
                 binding.metalData = this
                 binding.currencyName = currencyName
+                binding.isSilver = isSilver
                 if (position % 2 == 0) {
                     binding.thisLayout.setBackgroundResource(R.color.colorPrimaryDarkHalf)
                 } else {

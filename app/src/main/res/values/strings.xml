@@ -24,4 +24,5 @@
     <string name="pl" translatable="false">Pl</string>
     <string name="pt" translatable="false">Pt</string>
     <string name="no_net">NO INTERNET CONNECTION</string>
+    <string name="error">Error</string>
 </resources>

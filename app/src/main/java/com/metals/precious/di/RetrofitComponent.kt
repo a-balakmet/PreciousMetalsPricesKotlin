@@ -1,6 +1,6 @@
 package com.metals.precious.di
 
-import com.metals.precious.app.viewModels.MainViewModel
+import com.metals.precious.app.MainViewModel
 import dagger.Component
 import javax.inject.Singleton
 

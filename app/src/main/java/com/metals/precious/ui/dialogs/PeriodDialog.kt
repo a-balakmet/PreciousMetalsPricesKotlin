@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.metals.precious.R
-import com.metals.precious.app.viewModels.MainViewModel
+import com.metals.precious.app.MainViewModel
 import com.metals.precious.databinding.DialogPeriodBinding
 
 class PeriodDialog : BottomSheetDialogFragment() {
@@ -22,21 +22,21 @@ class PeriodDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainViewModel : MainViewModel by viewModels(ownerProducer = { requireActivity() })
+        val mainViewModel : MainViewModel by activityViewModels()
         binding.mainViewModel = mainViewModel
-        binding.yearPicker.minValue = when (mainViewModel.metalName.value!!) {
+        binding.yearPicker.minValue = when (mainViewModel.metalName) {
             R.string.gold, R.string.silver -> 1968
             else -> 1990
         }
         binding.yearPicker.maxValue = mainViewModel.currentYear
-        mainViewModel.period.value?.let {
+        mainViewModel.period.let {
             binding.yearPicker.value = it[1].toInt()
         }
         binding.yearPicker.wrapSelectorWheel = false
 
         binding.monthPicker.minValue = 1
         binding.monthPicker.maxValue = 12
-        mainViewModel.period.value?.let {
+        mainViewModel.period.let {
             binding.monthPicker.value = it[0].toInt()
         }
         binding.monthPicker.wrapSelectorWheel = false
@@ -45,8 +45,8 @@ class PeriodDialog : BottomSheetDialogFragment() {
         binding.okBtn.setOnClickListener{
             dismiss()
             val aMonth = if (binding.monthPicker.value < 10) "0${binding.monthPicker.value}" else "${binding.monthPicker.value}"
-            mainViewModel.initPeriod(monthAndYear = "$aMonth.${binding.yearPicker.value}")
-            mainViewModel.setOperation(1)
+            val monthAndYear = arrayOf(aMonth, binding.yearPicker.value.toString())
+            mainViewModel.initPeriod(monthAndYear = monthAndYear.toMutableList())
         }
     }
 }

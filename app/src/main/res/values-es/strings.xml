@@ -10,4 +10,5 @@
     <string name="month">mes</string>
     <string name="loading">Carga de datos</string>
     <string name="no_net">SIN CONEXIÓN A INTERNET</string>
+    <string name="error">Error</string>
 </resources>

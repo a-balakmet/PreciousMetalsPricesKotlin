@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.metals.precious.R
 import com.metals.precious.databinding.DialogNoNetBinding
 import androidx.fragment.app.viewModels
-import com.metals.precious.app.viewModels.MainViewModel
+import com.metals.precious.app.MainViewModel
 
 class NoNetDialog : DialogFragment() {
 

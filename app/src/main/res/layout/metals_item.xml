@@ -3,13 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.metals.precious.ui.uiAdds.BindingUtils"/>
+        <import type="android.view.View"/>
+        <import type="com.metals.precious.app.utils.BindingUtils"/>
         <variable
             name="metalData"
             type="com.metals.precious.app.models.MetalsPrices" />
         <variable
             name="currencyName"
             type="String" />
+        <variable
+            name="isSilver"
+            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -36,11 +40,13 @@
             android:background="@color/colorPrimary" />
 
         <TextView
+            android:id="@+id/am"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/am"
             android:layout_margin="3dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:visibility="@{isSilver ? View.GONE : View.VISIBLE}" />
 
         <TextView
             android:id="@+id/amTxt"
@@ -60,12 +66,13 @@
             android:background="@color/colorPrimary" />
 
         <TextView
+            android:id="@+id/pm"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/pm"
             android:layout_margin="3dp"
-            android:textAlignment="center" />
-
+            android:textAlignment="center"
+            android:visibility="@{isSilver ? View.GONE : View.VISIBLE}"/>
 
         <TextView
             android:id="@+id/pmTxt"
@@ -77,7 +84,8 @@
             android:text="@{BindingUtils.INSTANCE.returnMetalsCurrencyValue(metalData, currencyName, false)}"
             android:layout_margin="3dp"
             android:paddingHorizontal="@dimen/halfMargin"
-            android:textAlignment="viewEnd" />
+            android:textAlignment="viewEnd"
+            android:visibility="@{isSilver ? View.GONE : View.VISIBLE}"/>
 
     </LinearLayout>
 </layout>

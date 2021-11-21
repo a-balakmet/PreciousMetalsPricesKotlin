@@ -1,16 +1,11 @@
-package com.metals.precious.ui.uiAdds
+package com.metals.precious.app.utils
 
 import com.metals.precious.R
 import com.metals.precious.ThisApp.Companion.instance
 import com.metals.precious.ThisApp.Companion.numberFormat
 import com.metals.precious.app.models.MetalsPrices
-import com.metals.precious.app.models.SilverPrices
 
 object BindingUtils {
-
-    fun returnMetalName(resourceId: Int): String {
-        return instance.getString(resourceId)
-    }
 
     fun returnMetalsCurrencyValue(data: MetalsPrices, currencyName: String, isAm: Boolean): String {
         var currencyValue = ""
@@ -38,14 +33,5 @@ object BindingUtils {
             }
         }
         return currencyValue
-    }
-
-    fun returnSilverCurrencyValue(data: SilverPrices, currencyName: String): String {
-        return when (currencyName) {
-            instance.getString(R.string.usd) -> if (data.USD != null) numberFormat.format(data.USD) else "-"
-            instance.getString(R.string.gbp) -> if (data.USD != null) numberFormat.format(data.GBP) else "-"
-            instance.getString(R.string.eur) -> if (data.USD != null) numberFormat.format(data.EUR) else "-"
-            else -> "-"
-        }
     }
 }
